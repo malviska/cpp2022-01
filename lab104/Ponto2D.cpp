@@ -1,5 +1,6 @@
 #include "Ponto2D.hpp"
 
+Ponto2D::Ponto2D(){}
 Ponto2D::Ponto2D(double x, double y){
     _x = x;
     _y = y;
@@ -11,7 +12,8 @@ double Ponto2D::calcular_distancia(Ponto2D* ponto){
 }
 std::string Ponto2D::get_dados(){
     std::ostringstream value;
-    value <<"["<<std::setprecision(2)<<this->_x<<","<<this->_y<<"]";
+    value <<"["<<std::fixed<<std::setprecision(2)<< this->_x<<","<<this->_y<<"]";
+    std::setprecision(2);
     std::string val = value.str();
     return val;
 }

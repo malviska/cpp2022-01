@@ -11,8 +11,8 @@ struct Drone{
     int _id;
     double _raio, _energia = 100;
     Ponto2D _ponto;
-    std::string _buffer[5] = {};
-    std::string* _buf = &_buffer[0];
+    std::vector<std::string> _buffer;
+    std::string* _buf;
 
     Drone(int,Ponto2D, double);
     void mover(double, double, double);

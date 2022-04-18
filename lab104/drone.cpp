@@ -27,42 +27,28 @@ void Drone::broadcast_mensagem(Drone* arr[], int n){
     std::string val = oss.str();
     for(int i = 0; i< n; i++){
         double dis = this->calcular_distancia(arr[i]);
-        if(dis<=this->_raio){
+        if(arr[i]->_id !=this->_id && dis<=this->_raio){
             (arr[i])->salvar_mensagem(val);
         }
     }
 }
 void Drone::salvar_mensagem(std::string salvar_mensagem){
-    if(this->_buf == &this->_buffer[4]){
-        *_buf = salvar_mensagem; 
-        this->_buf = &this->_buffer[0];
+    if(this->_buffer.size()< 5){
+        this->_buffer.push_back(salvar_mensagem);
+        this->_buf = &this->_buffer[sizeof(this->_buffer)/sizeof(this->_buffer[0])];
+    }else if(_buf == &this->_buffer[4]){ 
+       this->_buf = &this->_buffer[0];
+        *this->_buf = salvar_mensagem;
     }else{
-        *_buf = salvar_mensagem;
-        _buf++;
+        *this->_buf = salvar_mensagem;
+        this->_buf++;
     }
 
 }
 void Drone::imprimir_mensagens_recebidas(){ 
-    std::map<std::string,std::vector<std::string>> resource;
-    std::map<std::string,std::vector<std::string>>::iterator it;
-    for(int i =0; i<5; i++){
-        std::size_t pos = this->_buffer[i].find(",");
-        if(pos == std::string::npos){
-            break;
-        }
-        std::string sub = this->_buffer[i].substr(7,pos-7);
-        if(resource.find(sub) == resource.end()){
-            resource[sub] = {_buffer[i]};
-        }else{
-            resource[sub].push_back(_buffer[i]);
-        }
-    }
-    for(it = resource.begin();it!=resource.end(); it++){
-        std::cout<<"Mensagens de "<<it->first<<":\n";
-        std::vector<std::string>::iterator it2;
-        for(it2 = it->second.begin();it2!=it->second.end(); it2++){
-            std::cout<<*it2<<std::endl;
-        }
+    std::cout<<"Mensagens de "<< this->_id<<":\n";
+    for(std::string i : this->_buffer){
+        std::cout<<i<<"\n";
     }
 }
 void Drone::imprimir_status(){

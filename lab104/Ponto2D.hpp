@@ -7,7 +7,7 @@
 
 struct Ponto2D{
     double _x, _y;
-
+    Ponto2D();
     Ponto2D(double, double);
     double calcular_distancia(Ponto2D*);
     std::string get_dados();

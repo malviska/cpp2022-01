@@ -10,14 +10,14 @@
 struct Drone{
     int _id;
     double _raio, _energia = 100;
-    Ponto2D* _ponto;
-    std::string _buffer[5] = {};
-    std::string* _buf = &_buffer[0];
+    Ponto2D _ponto;
+    std::vector<std::string> _buffer;
+    std::string* _buf;
 
-    Drone(int,Ponto2D*, double);
+    Drone(int,Ponto2D, double);
     void mover(double, double, double);
     double calcular_distancia(Drone*);
-    void broadcast_mensagem(Drone**[], int);
+    void broadcast_mensagem(Drone**, int);
     void salvar_mensagem(std::string);
     void imprimir_mensagens_recebidas();
     void imprimir_status();

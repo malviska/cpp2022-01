@@ -1,11 +1,36 @@
-#include<iostream>
-#include "FilaAtendimento.hpp"
+// NÃO ALTERE ESSA LINHA
+#include "avaliacao_basica_atendimento.hpp"
+
+//#include<iostream>
+//#include "FilaAtendimento.hpp"
 using namespace std;
 int main ()
 {
     FilaAtendimento fila;
-    fila.adicionar_cliente("João", 22);
-    fila.adicionar_cliente("José", 44);
-    fila.adicionar_cliente("Genivaldo", 70);
-    fila.imprimir_fila();
+    char k;
+    int idade, senha;
+    std::string name;
+    while(true){
+        cin>>k;
+        switch(k){
+            case 'a':
+            cin>> name>>idade;
+            fila.adicionar_cliente(name, idade);
+            break;
+            case 'c':
+            fila.chamar_cliente();
+            break;
+            case 'e':
+            cin>> senha;
+            fila.estimativa_tempo_espera(senha);
+            break;
+            case 'p':
+            fila.imprimir_fila();
+            break;
+            case 'b':
+            avaliacao_basica();
+            break;
+        }
+    }
+    return 0;
 }

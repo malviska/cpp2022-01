@@ -10,8 +10,8 @@ bool Cliente::eh_prioritario(){
     return (this->_idade >= 60);
 }
 int Cliente::tempo_estimado_atendimento(){
-    if(this->eh_prioritario()) return 8;
-    else return 12;
+    if(this->eh_prioritario()) return 12;
+    else return 8;
 }
 void Cliente::imprimir_dados(){
     std::cout<<this->_senha<<"\t"<<this->_nome<<"\t"<<this->_idade<<std::endl;

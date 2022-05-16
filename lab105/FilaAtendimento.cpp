@@ -45,7 +45,11 @@ void FilaAtendimento::ePreferencial(Node*& list, Node* celula) {
     if(!(list->_cliente.eh_prioritario())){
         celula->_next = list;
         list = celula;
-    }else return this->ePreferencial(list->_next, celula);
+    }else if(list == tail){
+        list->_next = celula;
+        tail = celula;
+    }
+    else return this->ePreferencial(list->_next, celula);
 }
 void FilaAtendimento::naoPreferencial(Node*list, Node* celula){
     if(list == tail){

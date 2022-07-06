@@ -2,4 +2,5 @@
 .git
 temp.txt
 bin/
-makefile
+*.o
+build/
